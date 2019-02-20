@@ -16,6 +16,7 @@ int compSelect;
 int winOrLoss;
 int compWins=0;
 int userWins=0;
+int ties=0;
 char playAgain;
 
 do
@@ -28,31 +29,26 @@ winOrLoss=playResults(userSelect,compSelect);
 
 if(winOrLoss==1){userWins++;}
 else if(winOrLoss==-1){compWins++;}
+else if(winOrLoss==0){ties++;}
 
 cout<<"Continue? (y/n)\n";
 cin>>playAgain;
 
 }while(playAgain=='y');
+	
+cout<<"I won "<<compWins<<" time(s)"<<endl<<"You won "<<userWins<<" time(s)"<<endl<<"There were "<<ties<<" Tie(s)\n";
 
-if(playAgain=='n')
-	{
-	cout<<"I won "<<compWins<<" time(s)"<<endl<<"You won "<<userWins<<" time(s)";
-	}
 return 0;
 }
 
 int getCompSelection()
 {
-int computerMove;
-computerMove=rand()%3+1;
-return computerMove;
+return rand()%3+1;
 }
 
 int getUserSelection()
 {
 int selection;
-int userWin;
-int compWin;
 
 cout<<"What is your play?\n";
 cout<<"Rock (1), Paper(2), Scissors (3)\n";
@@ -65,7 +61,7 @@ else{cout<<"Please enter a valid move you stupid human\n";}
 
 int playResults(int userSelect, int compSelect)
 {
-if(userSelect==compSelect){cout<<"It was a tie\n";}
+if(userSelect==compSelect){cout<<"It was a tie\n";return 0;}
 
 if(compSelect==1)
 {
