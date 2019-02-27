@@ -23,13 +23,14 @@ int userWins=0;
 int ties=0;
 char playAgain;
 
+cout<<"It's time to play Rock, Paper, Scissors!\n";
 do
 {
-cout<<"It's time to play Rock, Paper, Scissors!\n";
 userSelect=getUserSelection();
 compSelect=getCompSelection();
 cout<<endl;
-for(int i=0;i<3;i++){cout<<"..."<<i+1<<endl;if(i==2){cout<<"Shoot!"<<endl;cout<<endl;}sleep_seconds(1);}
+
+for(int i=0;i<3;i++){cout<<i+1<<"..."<<endl;if(i==2){cout<<"Shoot!"<<endl;cout<<endl;}sleep_seconds(1);}
 
 winOrLoss=playResults(userSelect,compSelect);
 
@@ -44,7 +45,7 @@ cin>>playAgain;
 	
 cout<<endl;
 cout<<"I won! "<<compWins<<" time(s)"<<endl;sleep_seconds(1);
-cout<<"You won! "<<compWins<<" time(s)"<<endl;sleep_seconds(1);
+cout<<"You won! "<<userWins<<" time(s)"<<endl;sleep_seconds(1);
 cout<<"There were "<<ties<<" tie(s)"<<endl;sleep_seconds(1);
 //cout<<"I won "<<compWins<<" time(s)"<<endl<<"You won "<<userWins<<" time(s)"<<endl<<"There were "<<ties<<" Tie(s)\n";
 
