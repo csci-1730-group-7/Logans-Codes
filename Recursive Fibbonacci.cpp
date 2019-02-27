@@ -7,12 +7,13 @@ int main()
 {
 int n;
 int target;
-
-cout<<"Which Fibonacci number shall I calculate?"<<endl;
+do
+{
+cout<<"Which nth Fibonacci number shall I calculate? -1 to exit"<<endl;
 cin>>n;
 target=fibonnaci(n);
-cout<<"The target number = "<<target;
-
+cout<<"The  number = "<<target<<endl;
+}while(n>0);
 return 0;
 }
 
