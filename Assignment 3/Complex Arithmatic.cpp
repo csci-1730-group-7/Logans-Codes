@@ -15,17 +15,17 @@ public:
 	//input functions
 	void inputComplex( )
 	{
-	cout<<"Enter a complex number a+bi\n";
-	cin>>a>>sign>>b>>i;
-	if(sign=='-'){b*=-1;}
+		cout<<"Enter a complex number a+bi\n";
+		cin>>a>>sign>>b>>i;
+		if(sign=='-'){b*=-1;}
 	}
 	void dispComplex( )
 	{
 		if(a==0){cout<<b<<"i"<<endl;}//if a is zero, it will not be outputted
+		
 		else{
-		if(negSign==true){cout<<a<<b<<"i"<<endl;}//I have no clue what these 3 
-		else{cout<<a<<"+"<<b<<"i"<<endl;}//statements do but they work..
-		if(a==0){cout<<b<<"i"<<endl;}//somehow 
+			if(negSign==true){cout<<a<<"+"<<b<<"i"<<endl;}//I have no clue what these 3 
+			else{cout<<a<<"+"<<b<<"i"<<"1"<<endl;}//statements do but they work..
 			}
 	}
 
@@ -73,14 +73,25 @@ Complex Complex::subComplex(Complex s)
 	return q;
 }
 
+Complex Complex::multComplex(Complex s)
+{
+	Complex q;
+	
+	q.a=((a*s.a)-(b*s.b));
+	q.b=((a*s.b)+(b*s.a));
+	
+	return q;
+}
+
 Complex Complex::divComplex(Complex s)
 {
 	Complex q;
 	
-	q.a=a*s.a;
-	
-}
+	q.a=((a*s.a)+(s.b*b))/((s.a*s.a)+(s.b*s.b));
+	q.b=((b*s.a)-(a*s.b))/((s.a*s.a)+(s.b*s.b));
 
+	return q;
+}
 Complex::Complex(){}
 Complex::Complex(double a, double b, char i, char sign){}
 
@@ -118,10 +129,16 @@ int main()
 				Q.dispComplex();
 				break;
 				case '*':
-				//
+				I.inputComplex();
+				N.inputComplex();
+				Q=I.multComplex(N);
+				Q.dispComplex();
 				break;
 				case '/':
-				//
+				I.inputComplex();
+				N.inputComplex();
+				Q=I.divComplex(N);
+				Q.dispComplex();
 				break;
 				default:
 				cout<<"Please enter a valid arithmetic operation\n";
