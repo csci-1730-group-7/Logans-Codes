@@ -10,7 +10,7 @@ class Complex
 public:
 	//default constructor
 	Complex( );
-	Complex(double a, double b, char i, char sign);
+	Complex(double a, double b, double c, char i, char sign);
 
 	//input functions
 	void inputComplex( )
@@ -37,15 +37,25 @@ public:
 
 	//not so simple mierda 
 	void convertComplex( );
-	void checkEquality( );
+	Complex checkEquality(Complex s);
 
 private:
 
-	double a,b;
+	double a,b,c;
 	char i, sign;
 	bool negSign;
 
 };
+
+struct quadPlusMinus
+{
+
+
+
+};
+
+Complex::Complex(){}
+Complex::Complex(double a, double b, double c, char i, char sign){}
 
 Complex Complex::addComplex(Complex s)
 {
@@ -92,8 +102,44 @@ Complex Complex::divComplex(Complex s)
 
 	return q;
 }
-Complex::Complex(){}
-Complex::Complex(double a, double b, char i, char sign){}
+
+Complex Complex::checkEquality(Complex s)
+{
+	Complex q,q1;
+	double des, x1,x2;
+	float a1,b1,c1;	
+
+	q.inputComplex();	
+
+	cout<<"Enter a: \n";
+	cin>>a1;
+	cout<<"Enter b: \n";
+	cin>>b1;
+	cout<<"Enter c: \n";
+	cin>>c1;
+
+	des=(b1*b1)+(-4.0*a1*c1);
+
+	if(des>0)
+	{
+	cout<<"This is not a solution\n";
+	}
+	else 
+	{
+	des=des*-1.0;
+	b=sqrt(des);
+	a=a1;
+	s.a*=-1;
+	
+	if((q.a-s.a<0.000001)&&(q.b-s.b<0.000001))
+{
+cout<<"This is a solution\n";
+}
+
+	}
+		
+	return q;
+	}
 
 int main()
 {
@@ -111,31 +157,29 @@ int main()
 
 		{
 			case 1:
+			I.inputComplex();
 			cout<<"Enter an operation (+, -, *, /)\n";
 			cin>>operation;
+			
 			switch(operation)
 
 			{
 				case '+':
-				I.inputComplex();
 				N.inputComplex();
 				Q=I.addComplex(N);
 				Q.dispComplex();
 				break;
 				case '-':
-				I.inputComplex();
 				N.inputComplex();
 				Q=I.subComplex(N);
 				Q.dispComplex();
 				break;
 				case '*':
-				I.inputComplex();
 				N.inputComplex();
 				Q=I.multComplex(N);
 				Q.dispComplex();
 				break;
 				case '/':
-				I.inputComplex();
 				N.inputComplex();
 				Q=I.divComplex(N);
 				Q.dispComplex();
@@ -147,7 +191,8 @@ int main()
 			}//end of nested switch
 
 			case 2:
-			//
+			Q.checkEquality( );
+			
 			break;
 			case 3:
 			cout<<"Exiting";sleep_seconds(0.2);
