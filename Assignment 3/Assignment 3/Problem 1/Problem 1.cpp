@@ -1,4 +1,4 @@
-#inu7clude <pch.h>
+#include <pch.h>
 #include <iostream>
 #include <cmath>
 #include <windows.h>
@@ -25,8 +25,9 @@ public:
 		if (a == 0) { cout << b << "i" << endl; }//if a is zero, it will not be outputted
 
 		else {
-			if (negSign == true) { cout << a << "+" << b << "i" << endl; }//I have no clue what these 3 
-			else { cout << a << "+" << b << "i" << "1" << endl; }//statements do but they work..
+			cout << a << sign << b << i;
+			//if (negSign == true) { cout << a << "+" << b << "i" << endl; }//I have no clue what these 3 
+			//else { cout << a << "+" << b << "i" << "1" << endl; }//statements do but they work..
 		}
 	}
 
@@ -37,13 +38,13 @@ public:
 	Complex divComplex(Complex s);
 
 	//not so simple mierda 
-	void convertComplex();
-	Complex checkEquality(Complex s, Complex i);
+	void convertComplex( );
+	Complex checkEquality( );
 
 private:
 
 	double a, b, c;
-	char i, sign;
+	char i='i', sign;
 	bool negSign;
 
 };
@@ -97,40 +98,63 @@ Complex Complex::divComplex(Complex s)
 	return q;
 }
 
-Complex Complex::checkEquality(Complex s, Complex i)
+Complex Complex::checkEquality( )
 {
-	Complex q;
+	Complex z;//store a,b,c values for quadratic equation... little bit of self hatred involved here.. what am I doing here?
+	Complex q;//store input variables
+	Complex c;//store conjugate of inputted complex number
+	Complex s;//store negative roots
+	Complex i;//store positive roots
+	
+	q.inputComplex(q);
 
-	q.inputComplex();
-
-	cout << "Enter a: \n";
-	cin >> a;
-	cout << "Enter b: \n";
-	cin >> b;
-	cout << "Enter c: \n";
-	cin >> c;
- 
-	if ( ((b*b) + (-4 * a*c)) > 0) { cout << "The inputted complex number is not part of the solution as it is not imaginary\n"; }
-
+	if (q.sign == '-') { c.b = (q.b*-1); c.a = q.a; }//if the imaginary portion is negative, this will flip the conjugate's sign
 	else {
-		s.a = (b*(-1));
-		s.b = sqrt((((b*b) + (-4 * a*c))*(-1)));
+		c.b = q.b; c.a = q.a;
+	}
 
-		i.a = (b*(-1));
-		i.b = (sqrt((((b*b) + (-4 * a*c))*-1))*(-1));
+	cout << "Enter a: ";
+	do {
+		cin >> z.a; if (z.a == 0) { cout <<endl<< "a cannot be 0, please re-enter: "; }
+	} while (z.a == 0);
 
-		cout << "s.a= " << s.a << "s.b= " << s.b << "i.a= " << i.a << "i.b= " << i.b;
+	cout << "Enter b: ";
+	cin >> z.b;
+	cout << "Enter c: ";
+	cin >> z.c;
 
+	
+	//declarations to get the coefficents correct
 
+	z.c = ((z.b*z.b) + (-4.0*z.a*z.c));//defining c as the descriminant 
 
-		//if( (abs(q.a-s.a)<0.000001) && (abs(q.b-s.b)<0.000001) && (abs(q.a - i.a) < 0.000001 ) && (abs(q.b - i.b) < 0.000001) ) {cout<<"The complex number is a solution to the quadratic equation\n"; }
+	if (z.c >= 0) { cout << "The complex number " << q.a << q.sign << q.b << "i" << " is not a solution to the quadratic equation\n" << endl; }
+	
+	else {
+		z.c = z.c * -1.0;//change descriminant so it is not negative
 		
+		z.a = 2 * z.a;//a now equals 2 * a 
 		
-		//else {cout<<"This complex number is not a part of the solution to the quadratic equation\n"; }
+		z.b = (z.b*-1) / z.a;//-b in front of the quadratic equation
+		
+		z.c = (sqrt(z.c)) / z.a;// descriminant, imaginary portion of a+bi
+	
+		//collecting roots of quadratic equation 
 
-		}
+		i.a = z.b;//real number
+		i.b = z.c;//positive imaginary root
+		s.a = z.b;//real number
+		s.b = (z.c*-1);//negative imaginary root 
 
+		//complex pairs from quadratic equation are : i.a + i.b , s.a - s.b 	
+		//complex pairs for : q.a +- q.b , c.a +- q.b 
+		//q.b will always be positive 
 
+		//this if statment uses the 
+		if ((abs(i.a - q.a) < 0.000001) && (abs(s.a - c.a) < 0.000001) && (abs(i.b - q.b) < 0.000001) && (abs(s.b) - abs(s.b)) < 0.000001) { cout << "The complex number " << q.a << q.sign << q.b << "i" << " is a solution to the quadratic equation\n" << endl; }
+		
+		else { cout << "The complex number " << q.a << q.sign << q.b << "i" << " is not a solution to the quadratic equation\n" << endl; }
+	}
 	return q;
 }
 
@@ -150,7 +174,7 @@ int main()
 
 		{
 		case 1:
-			I.inputComplex();
+			I.inputComplex(I);
 			cout << "Enter an operation (+, -, *, /)\n";
 			cin >> operation;
 
@@ -158,22 +182,22 @@ int main()
 
 			{
 			case '+':
-				N.inputComplex();
+				N.inputComplex(I);
 				Q = I.addComplex(N);
 				Q.dispComplex();
 				break;
 			case '-':
-				N.inputComplex();
+				N.inputComplex(I);
 				Q = I.subComplex(N);
 				Q.dispComplex();
 				break;
 			case '*':
-				N.inputComplex();
+				N.inputComplex(I);
 				Q = I.multComplex(N);
 				Q.dispComplex();
 				break;
 			case '/':
-				N.inputComplex();
+				N.inputComplex(I);
 				Q = I.divComplex(N);
 				Q.dispComplex();
 				break;
@@ -184,8 +208,7 @@ int main()
 			}//end of nested switch
 
 		case 2:
-			Q.checkEquality(I,N);
-
+			Q.checkEquality( );
 			break;
 		case 3:
 			cout << "Exiting"; //sleep_seconds(2100);
