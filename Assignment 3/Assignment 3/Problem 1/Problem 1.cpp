@@ -18,16 +18,17 @@ public:
 	{
 		cout << "Enter a complex number a+bi\n";
 		cin >> a >> sign >> b >> i;
-		if (sign == '-') { b *= -1; }
+		if (sign == '-') { b *= -1;}
 	}
 	void dispComplex()
 	{
 		if (a == 0) { cout << b << "i" << endl; }//if a is zero, it will not be outputted
 
 		else {
-			cout << a << sign << b << i;
-			//if (negSign == true) { cout << a << "+" << b << "i" << endl; }//I have no clue what these 3 
-			//else { cout << a << "+" << b << "i" << "1" << endl; }//statements do but they work..
+			
+			if (b < 0) { cout << a << b << i << endl; }
+			else { cout << a << sign << b << i << endl; }
+
 		}
 	}
 
@@ -38,8 +39,12 @@ public:
 	Complex divComplex(Complex s);
 
 	//not so simple mierda 
-	void convertComplex( );
-	Complex checkEquality( );
+	Complex checkEquality();
+	void convertComplex()
+	{
+		cout << 0 << "+" << b << i;
+	}
+	
 
 private:
 
@@ -57,11 +62,9 @@ Complex Complex::addComplex(Complex s)
 	Complex q;
 
 	q.a = a + s.a;
-	q.b = b + s.b;
 
-	if (s.sign == '-') { q.negSign = true; }
-	else if (q.sign == 'i') { q.negSign = true; }
-	else { q.negSign = false; }
+	if (negSign == true) { q.b = (abs(b - s.b))*-1; }
+	else{ q.b = b + s.b; }
 
 	return q;
 }
@@ -106,7 +109,7 @@ Complex Complex::checkEquality( )
 	Complex s;//store negative roots
 	Complex i;//store positive roots
 	
-	q.inputComplex(q);
+	q.inputComplex( );
 
 	if (q.sign == '-') { c.b = (q.b*-1); c.a = q.a; }//if the imaginary portion is negative, this will flip the conjugate's sign
 	else {
@@ -151,7 +154,7 @@ Complex Complex::checkEquality( )
 		//q.b will always be positive 
 
 		//this if statment uses the 
-		if ((abs(i.a - q.a) < 0.000001) && (abs(s.a - c.a) < 0.000001) && (abs(i.b - q.b) < 0.000001) && (abs(s.b) - abs(s.b)) < 0.000001) { cout << "The complex number " << q.a << q.sign << q.b << "i" << " is a solution to the quadratic equation\n" << endl; }
+		if ((abs(i.a - q.a) < 0.000001) && (abs(s.a - c.a) < 0.000001) && (abs(i.b - q.b) < 0.000001) && (abs(s.b) - abs(i.b)) < 0.000001) { cout << "The complex number " << q.a << q.sign << q.b << "i" << " is a solution to the quadratic equation\n" << endl; }
 		
 		else { cout << "The complex number " << q.a << q.sign << q.b << "i" << " is not a solution to the quadratic equation\n" << endl; }
 	}
@@ -174,7 +177,7 @@ int main()
 
 		{
 		case 1:
-			I.inputComplex(I);
+			I.inputComplex( );
 			cout << "Enter an operation (+, -, *, /)\n";
 			cin >> operation;
 
@@ -182,42 +185,44 @@ int main()
 
 			{
 			case '+':
-				N.inputComplex(I);
+				N.inputComplex( );
 				Q = I.addComplex(N);
 				Q.dispComplex();
 				break;
 			case '-':
-				N.inputComplex(I);
+				N.inputComplex( );
 				Q = I.subComplex(N);
 				Q.dispComplex();
 				break;
 			case '*':
-				N.inputComplex(I);
+				N.inputComplex( );
 				Q = I.multComplex(N);
 				Q.dispComplex();
 				break;
 			case '/':
-				N.inputComplex(I);
+				N.inputComplex( );
 				Q = I.divComplex(N);
 				Q.dispComplex();
 				break;
 			default:
 				cout << "Please enter a valid arithmetic operation\n";
+			
 				break;
 
 			}//end of nested switch
-
+			break;
 		case 2:
-			Q.checkEquality( );
+			cout << "I am the problem";
 			break;
 		case 3:
-			cout << "Exiting"; //sleep_seconds(2100);
+			cout << "Exiting"; //sleep_seconds(2100);]]]]]]]]]]]]
+
 			/*cout << "."; sleep_seconds(2100);
 			cout << "."; sleep_seconds(2100);
 			cout << "."; sleep_seconds(2100);*/
 			break;
 		default:
-			cout << "I cannot do that at this time\n";
+			cout << "I cannot do that at this time\n";																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									
 			break;
 
 		}//end of switch statement
