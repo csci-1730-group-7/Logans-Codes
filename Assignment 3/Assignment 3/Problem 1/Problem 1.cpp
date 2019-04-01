@@ -1,4 +1,4 @@
-#include <pch.h>
+#include "pch.h"
 #include <iostream>
 #include <cmath>
 #include <windows.h>
@@ -103,7 +103,7 @@ Complex Complex::divComplex(Complex s)
 
 Complex Complex::checkEquality( )
 {
-	Complex z;//store a,b,c values for quadratic equation... little bit of self hatred involved here.. what am I doing here?
+	Complex z;//store a,b,c values for quadratic equation... little bit of self hatred involved here.... what am I doing here?
 	Complex q;//store input variables
 	Complex c;//store conjugate of inputted complex number
 	Complex s;//store negative roots
@@ -129,7 +129,7 @@ Complex Complex::checkEquality( )
 	
 	//declarations to get the coefficents correct
 
-	z.c = ((z.b*z.b) + (-4.0*z.a*z.c));//defining c as the descriminant 
+	z.c = ((z.b*z.b) + (-4.0*z.a*z.c));//defining z.c as the descriminant 
 
 	if (z.c >= 0) { cout << "The complex number " << q.a << q.sign << q.b << "i" << " is not a solution to the quadratic equation\n" << endl; }
 	
@@ -215,11 +215,11 @@ int main()
 			cout << "I am the problem";
 			break;
 		case 3:
-			cout << "Exiting"; //sleep_seconds(2100);]]]]]]]]]]]]
+			cout << "Exiting"; sleep_seconds(2100);
 
-			/*cout << "."; sleep_seconds(2100);
 			cout << "."; sleep_seconds(2100);
-			cout << "."; sleep_seconds(2100);*/
+			cout << "."; sleep_seconds(2100);
+			cout << "."; sleep_seconds(2100);
 			break;
 		default:
 			cout << "I cannot do that at this time\n";																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									
