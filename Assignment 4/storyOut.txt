@@ -1,0 +1,32 @@
+
+Filename: story.txt
+Total number of words = 179
+Average word length = 4.9162 characters.
+Shortest word length = 1
+Longest word length = 13
+
+Filename: story.txt
+Shortest words in file: 
+a
+a
+a
+I
+a
+a
+a
+a
+a
+
+Filename: story.txt
+Longest words in file: 
+disappointing
+participation
+Massachusetts
+
+Filename: story.txt
+Search word: hello
+This word appears 0 time(s) in the file
+
+Filename: story.txt
+Search word: disappointing
+This word appears 1 time(s) in the file
