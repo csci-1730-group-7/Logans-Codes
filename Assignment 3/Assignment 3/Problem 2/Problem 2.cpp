@@ -19,12 +19,12 @@ public:
 	friend ostream &operator << (ostream &os, const Complex &number);
 	friend istream &operator >> (istream &is, Complex &number);
 
-	//simple arthimatic functions
+	//simple overloaded arithmatic functions
 	const Complex operator+(const Complex &numberOne);
 	const Complex operator-(const Complex &numberOne);
 	const Complex operator*(const Complex &numberOne);
 	const Complex operator/(const Complex &numberOne);
-
+	friend bool operator==(Complex &numberOne);
 	//not so simple mierda 
 	Complex checkEquality();
 	void convertComplex()
@@ -63,8 +63,6 @@ istream &operator >> (istream &is, Complex &number)
 
 		return is;
 	}
-
-
 
 
 Complex::Complex() {}
@@ -123,8 +121,6 @@ Complex Complex::checkEquality()
 
 	cin >> q;
 
-
-
 	if (q.sign == '-') { c.b = (q.b*-1); c.a = q.a; }//if the imaginary portion is negative, this will flip the conjugate's sign
 	else {
 		c.b = q.b; c.a = q.a;
@@ -168,11 +164,19 @@ Complex Complex::checkEquality()
 		//q.b will always be positive 
 
 		//this if statment uses the 
-		if ((abs(i.a - q.a) < 0.000001) && (abs(s.a - c.a) < 0.000001) && (abs(i.b - q.b) < 0.000001) && (abs(s.b) - abs(i.b)) < 0.000001) { cout << "The complex number " << q.a << q.sign << q.b << "i" << " is a solution to the quadratic equation\n" << endl; }
-
-		else { cout << "The complex number " << q.a << q.sign << q.b << "i" << " is not a solution to the quadratic equation\n" << endl; }
+		
 	}
 	return q;
+}
+
+friend bool operator==(Complex &numberOne)
+{
+	if ((abs(i.a - q.a) < 0.000001) && (abs(s.a - c.a) < 0.000001) && (abs(i.b - q.b) < 0.000001) && (abs(s.b) - abs(i.b)) < 0.000001) {
+		return true;
+	}
+	else {
+		cout << return false;
+
 }
 
 int main()
@@ -229,11 +233,11 @@ int main()
 			N.checkEquality();
 			break;
 		case 3:
-			cout << "Exiting"; //sleep_seconds(2100);]]]]]]]]]]]]
+			cout << "Exiting"; sleep_seconds(2100);
 
-			/*cout << "."; sleep_seconds(2100);
 			cout << "."; sleep_seconds(2100);
-			cout << "."; sleep_seconds(2100);*/
+			cout << "."; sleep_seconds(2100);
+			cout << "."; sleep_seconds(2100);
 			break;
 		default:
 			cout << "I cannot do that at this time\n";
