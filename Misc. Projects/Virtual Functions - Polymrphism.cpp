@@ -4,7 +4,7 @@ using namespace std;
 class Enemy{
 	
 	public:
-		virtual void attack(){
+	 void attack(){
 			cout << "This is an attack!/n";
 		}
 		void tester(){
